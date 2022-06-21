@@ -43,7 +43,6 @@ abstract class CoreRoutines {
       for (int x = 0; x < params.horizontalCount; x++) {
         int width = widthsPerColumn[x];
         int xOffset = x * width;
-        print('Cropping ($xOffset,$yOffset) -> ${width}x${height}');
         imglib.Image image =
             imglib.copyCrop(resizedImage, xOffset, yOffset, width, height);
         crops.add(Uint8List.fromList(

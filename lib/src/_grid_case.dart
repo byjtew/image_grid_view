@@ -2,7 +2,7 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 
-class ImageGridCase extends StatelessWidget {
+class ImageGridCase extends StatefulWidget {
   final Uint8List image;
   final int index;
   final Widget Function(BuildContext, int, Uint8List) caseBuilder;
@@ -12,9 +12,7 @@ class ImageGridCase extends StatelessWidget {
   final Function(int, Uint8List) onCaseTap;
   final Function(int, Uint8List) onCaseLongPress;
 
-  Widget? caseCache;
-
-  ImageGridCase(this.image,
+  const ImageGridCase(this.image,
       {super.key,
       required this.index,
       required this.caseBuilder,
@@ -30,6 +28,13 @@ class ImageGridCase extends StatelessWidget {
       selected ? selectedDecoration : notSelectedDecoration;
 
   @override
+  createState() => _ImageGridCaseState();
+}
+
+class _ImageGridCaseState extends State<ImageGridCase> {
+  Widget? caseCache;
+
+  @override
   Widget build(BuildContext context) {
     return MouseRegion(
       onEnter: (event) {
@@ -40,16 +45,17 @@ class ImageGridCase extends StatelessWidget {
       },
       child: GestureDetector(
         onTap: () {
-          selectionNotifier.value = index;
-          onCaseTap(index, image);
+          widget.selectionNotifier.value = widget.index;
+          widget.onCaseTap(widget.index, widget.image);
         },
-        onLongPress: onCaseLongPress(index, image),
+        onLongPress: widget.onCaseLongPress(widget.index, widget.image),
         child: ValueListenableBuilder<int>(
-            valueListenable: selectionNotifier,
-            child: caseCache ??= caseBuilder(context, index, image),
+            valueListenable: widget.selectionNotifier,
+            child: caseCache ??=
+                widget.caseBuilder(context, widget.index, widget.image),
             builder: (context, snapshot, w) {
               return Container(
-                decoration: currentDecoration,
+                decoration: widget.currentDecoration,
                 child: w,
               );
             }),

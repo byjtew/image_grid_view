@@ -163,7 +163,6 @@ class ImageGridView extends StatefulWidget {
   static const BoxDecoration _defaultNotSelectedDecoration = BoxDecoration();
 
   void _internalOnTap(int index, Uint8List image) {
-    print('Tapped on $index');
     _selectionStream?.add(image);
     _onTap.call(index, image);
   }
@@ -222,8 +221,8 @@ class _ImageGridViewState extends State<ImageGridView> {
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: List.generate(widget._horizontalCount, (_i) {
-                      int i = index * widget._horizontalCount + _i;
+                    children: List.generate(widget._horizontalCount, (y) {
+                      int i = index * widget._horizontalCount + y;
                       if (_cases.length == i) {
                         _cases.add(SizedBox(
                           width: widget._width / widget._horizontalCount,

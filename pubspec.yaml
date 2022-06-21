@@ -1,5 +1,5 @@
 name: image_grid_view
-version: 0.0.1
+version: 0.0.2
 description: A customisable grid view for images, including resizing, cropping and selection.
 homepage: https://github.com/byjtew/image_grid_view
 
