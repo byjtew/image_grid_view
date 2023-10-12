@@ -11,6 +11,12 @@ and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages). 
 -->
 
+## <!> This repository is not maintained anymore <!>
+
+Last supported Flutter versions <3.0
+
+---
+
 # Image Grid View
 
 ### Grid view widget for single images.
